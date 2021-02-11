@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Encoding Machine</title>
+        
+        <style>
+            #body{
+                margin:auto;
+                min-width:600px;
+                max-width:1000px;
+            }
+            
+            .section{
+                margin:30px auto 10px auto;
+            }
+            
+            .section-title{
+                margin:auto;
+                text-align:center;
+            }
+            
+            .information{
+                background-color:gainsboro;
+                margin-top:0px;
+                padding:5px;
+                border-radius:0px 0px 10px 10px;
+            }
+            
+            #table-body{
+                margin:auto;
+                text-align:center;
+            }
+            
+            .row-head{
+                width:33%;
+                max-width:33%;
+                border:2px solid black;
+            }
+            
+            #input{
+                resize:none;
+            }
+            
+            .wheel-input{
+                border:1px solid black;
+                border-radius:5px;
+            }
+            
+            .wheel-container{
+                margin-top:5px;
+            }
+            
+            .wheel-final{
+                border:1px solid black;
+                border-radius:5px;
+                font-family:Arial;
+                font-size:13.333px;
+                padding:1px 2px;
+            }
+            
+            .output-box{
+                width:90%;
+                max-width:90%;
+                height:200px;
+                border:1px solid black;
+                border-radius:5px;
+                margin:auto;
+                padding:4px;
+                text-align:left;
+                overflow-y:auto;
+                overflow-wrap:anywhere;
+                font-family:monospace;
+                font-size:13px;
+            }
+            
+            .paragraph{
+                text-indent:2em;
+            }
+            
+            .brk{
+                height:1px;
+                border:2px dotted black;
+                margin:3px 1px 0px 1px;
+                background-color:darkgrey;
+            }
+            
+        </style>
+    </head>
+    <body id="body">
+        
+        <!-- Tommy Flowers -->
+        <div class="section">
+            <h2 class="section-title">Tommy Flowers</h2>
+            <div class="brk"></div>
+            <div class="information">
+                <img style="display:block;margin-left:auto;margin-right:auto;height:200px;" src="https://upload.wikimedia.org/wikipedia/commons/8/84/Tommy_Flowers.jpg" alt="[Thomas Harold Flowers]">
+                <p class="paragraph">
+                    Thomas Harold Flowers also known as Tommy was born in London on December 22, 1905.
+                    In WWII Flowers worked as a code breaker in Bleatchy Park and was tasked with helping Alan Turing.
+                    Flowers and Turing would go on to change code breaking forever.
+                    Flowers and Turing would help automate code breaking with the use of simple (by todays standards) computers.
+                    Flowers would go on to make the Colossus and Mark II Colossi which take in a tape with the encoded German text and would run an algorithm to decrypt the message.
+                    The original Colossus ran at 5,000 characters per second and Mark II ran at 25,000 characters per second.
+                    Without Flowers work the German Enigma machine and other similar encoding machines would have taken much longer to crack.
+                    Flowers saved countless lives with important messages being revealed to British Intelligence.
+                </p>
+            </div>
+        </div>
+        
+        
+        <!-- Colossus -->
+        
+        <!-- Encoding and Decoding -->
+        <div class="section">
+            <h2 class="section-title">Colossus Encoding and Decoding Machine</h2>
+            <div class="brk"></div>
+            <div class="information">
+                <p class="paragraph" style="height:130px;margin-top:0px;">
+                    <img style="float:left;height:120px;margin:5px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Frontal_view_of_the_reconstructed_Colossus_at_The_National_Museum_of_Computing%2C_Bletchley_Park.jpg/1920px-Frontal_view_of_the_reconstructed_Colossus_at_The_National_Museum_of_Computing%2C_Bletchley_Park.jpg">
+                    On the left is a reconstruction of the Colossus computer.
+                    It is very complex and has many moving parts as well as many vaccum tubes used to store information.
+                    Below is a simulator for what the machine would do to decrypt the German messages and how the Germans encoded their messages.
+                    At Blechy Park the location for most British code breaking and the birth place of the original Colossus computer there were 19 Colossi at the end of the war.
+                    The code breaking potential of all the computers was key to the Allied win on WWII and the downfall of the Axis.
+                    It was also important that the Allies especially AMerica and Britian shared their intelligence with each other.
+                </p>
+                <table id="table-body">
+                    <tr>
+                        <th class="row-head">Input
+                        <th class="row-head">Encoded
+                        <th class="row-head">Decoded
+                    </tr>
+                    <tr>
+                        <td>
+                            Put the text you want to encode below to hide your message
+                        </td>
+                        <td>
+                            Below is the encoded message that would have been sent out by Hitler
+                        </td>
+                        <td>
+                            Below is the decoded message produced by Colossus
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <textarea id="input"  class="output-box" placeholder="Message"></textarea>
+                        </td>
+                        <td>
+                            <div id="enc" class="output-box">hlsahldshjadshjashjdjshlajlhasdjhjhasdhjjlhasdhjdaslhjdashlasdhjlashdjalhasdjl</div>
+                        </td>
+                        <td>
+                            <div id="dec" class="output-box"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>
+                                Wheels
+                                <input id="wheel-1" class="wheel-input" type="number" min="0" value="0" onchange="wheel_constrain(1)">
+                                <input id="wheel-2" class="wheel-input" type="number" min="0" value="0" onchange="wheel_constrain(2)">
+                                <input id="wheel-3" class="wheel-input" type="number" min="0" value="0" onchange="wheel_constrain(3)">
+                            </div>
+                            <div style="margin-top:3px;">
+                                <button id="random" type="button" name="Randomize" onClick="randomize_wheels()">Randomize</button>
+                                <input id="submit" type="submit" onClick="submit_data()">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="wheel-container">
+                                Final Wheels
+                                <span id="wheelf-1" class="wheel-final">0</span>
+                                <span id="wheelf-2" class="wheel-final">0</span>
+                                <span id="wheelf-3" class="wheel-final">0</span>
+                            </div>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                </table>
+                <div style="text-align:center;font-size:14px;">(The simulaiton above is not a replica of an Enigma machine, but a simplification of one)</div>
+            </div>
+        </div>
+        
+        
+        <!-- Sources -->
+        <div class="section">
+            <h2 class="section-title">Sources</h2>
+            <div class="brk"></div>
+            <div class="information">
+                <ul style="margin-top:0px">
+                    <li><a href="https://www.britannica.com/technology/Colossus-computer">Britannica Tommy Flowers</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/Tommy_Flowers">Wikipedia Tommy Flowers</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/Colossus_computer">Wikipedia Colossus</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/Enigma_machine">Wikipedia Enigma Machine</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        
+        
+        
+        <!-- Encode and Decode Script -->
+        <script>
+            var $ = id => document.getElementById(id),
+                inp_fld=$("input"),
+                sub_btn=$("submit"),
+                enc_div=$("enc"),
+                dec_div=$("dec"),
+                whl_1=$("wheel-1"),
+                whl_2=$("wheel-2"),
+                whl_3=$("wheel-3"),
+                whlf_1=$("wheelf-1"),
+                whlf_2=$("wheelf-2"),
+                whlf_3=$("wheelf-3"),
+                cipher_string="\nABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890!@#$%^&*()`~-_=+[]{}\\|;:'\",<.>/?",
+                cipher=cipher_string.split(""),
+                wheel1=0,
+                wheel2=0,
+                wheel3=0;
+            
+            whl_1.max=String(cipher.length-1);
+            whl_2.max=String(cipher.length-1);
+            whl_3.max=String(cipher.length-1);
+            
+            function wheel_constrain(n){
+                let SDO=$("wheel-"+n);
+                if(SDO.value<0){SDO.value=0;}
+                if(SDO.value>cipher.length-1){SDO.value=cipher.length-1;}
+            }
+            
+            function update_wheels(){
+                wheel1++;wheel2+=3;
+                if(wheel1>=cipher.length){wheel1=0;wheel2+=3;wheel3+=7;}
+                if(wheel2>=cipher.length){wheel2=0;wheel1+=2;wheel3+=3;}
+                if(wheel3>=cipher.length){wheel3=0;}
+                
+                if(wheel1>=cipher.length||wheel2>=cipher.length||wheel3>=cipher.length){
+                    update_wheels();
+                }
+            }
+            
+            function find_cipher(c){
+                for(var i=0;i<cipher.length;i++){
+                    if(cipher[i]==c){return i;}
+                }
+                return 0;
+            }
+            
+            function encode_text(t){
+                t=t.toUpperCase();
+                let R="";
+                for(let i=0;i<t.length;i++){
+                    update_wheels();
+                    R+=cipher[(wheel1*(wheel2+1)+wheel2+wheel3+find_cipher(t[i]))%cipher.length];
+                }
+                return R;
+            }
+            
+            
+            function randomize_wheels(){
+                whl_1.value=Math.round(Math.random()*cipher.length);
+                whl_2.value=Math.round(Math.random()*cipher.length);
+                whl_3.value=Math.round(Math.random()*cipher.length);
+            }
+            
+            function submit_data(){
+                wheel1=Number(whl_1.value);
+                wheel2=Number(whl_2.value);
+                wheel3=Number(whl_3.value);
+                
+                enc_div.innerText=encode_text(inp_fld.value);
+                dec_div.innerText=(inp_fld.value).toUpperCase();
+                
+                whlf_1.innerText=wheel1;
+                whlf_2.innerText=wheel2;
+                whlf_3.innerText=wheel3;
+            }
+            
+        </script>
+    </body>
+</html>
