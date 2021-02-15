@@ -1,0 +1,96 @@
+#body{
+    margin:auto;
+    min-width:600px;
+    max-width:1000px;
+}
+
+.section{
+    margin:30px auto 10px auto;
+}
+
+.section-title{
+    margin:auto;
+    padding:3px;
+    text-align:center;
+    background-color:cornflowerblue;
+    border-radius:10px 10px 0px 0px;
+}
+
+.information{
+    background-color:gainsboro;
+    margin-top:0px;
+    padding:5px;
+    border-radius:0px 0px 10px 10px;
+}
+
+#table-body{
+    margin:auto;
+    text-align:center;
+}
+
+.row-head{
+    width:33%;
+    max-width:33%;
+    border:2px solid black;
+}
+
+#input{
+    resize:none;
+}
+
+.wheel-input{
+    border:1px solid black;
+    border-radius:5px;
+}
+
+.wheel-container{
+    margin-top:5px;
+}
+
+.wheel-final{
+    border:1px solid black;
+    border-radius:5px;
+    font-family:Arial;
+    font-size:13.333px;
+    padding:1px 2px;
+}
+
+.output-box{
+    width:90%;
+    max-width:90%;
+    height:200px;
+    border:1px solid black;
+    border-radius:5px;
+    margin:auto;
+    padding:4px;
+    text-align:left;
+    overflow-y:auto;
+    overflow-wrap:anywhere;
+    font-family:monospace;
+    font-size:13px;
+    background-color:white;
+}
+
+.paragraph{
+    text-indent:2em;
+}
+
+.small-footer{
+    border-radius:10px;
+    text-align:center;
+    font-size:14px;
+    background-color:cornflowerblue;
+    margin:5px -5px -5px -5px;
+}
+
+.brk{
+    height:5px;
+    margin:0px;
+    background-color:darkgrey;
+}
+
+.li-4-col{
+    display: block;
+    width: 25%;
+    float: left;
+}
