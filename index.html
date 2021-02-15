@@ -3,104 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>Encoding Machine</title>
-        
-        <style>
-            #body{
-                margin:auto;
-                min-width:600px;
-                max-width:1000px;
-            }
-            
-            .section{
-                margin:30px auto 10px auto;
-            }
-            
-            .section-title{
-                margin:auto;
-                text-align:center;
-            }
-            
-            .information{
-                background-color:gainsboro;
-                margin-top:0px;
-                padding:5px;
-                border-radius:0px 0px 10px 10px;
-            }
-            
-            #table-body{
-                margin:auto;
-                text-align:center;
-            }
-            
-            .row-head{
-                width:33%;
-                max-width:33%;
-                border:2px solid black;
-            }
-            
-            #input{
-                resize:none;
-            }
-            
-            .wheel-input{
-                border:1px solid black;
-                border-radius:5px;
-            }
-            
-            .wheel-container{
-                margin-top:5px;
-            }
-            
-            .wheel-final{
-                border:1px solid black;
-                border-radius:5px;
-                font-family:Arial;
-                font-size:13.333px;
-                padding:1px 2px;
-            }
-            
-            .output-box{
-                width:90%;
-                max-width:90%;
-                height:200px;
-                border:1px solid black;
-                border-radius:5px;
-                margin:auto;
-                padding:4px;
-                text-align:left;
-                overflow-y:auto;
-                overflow-wrap:anywhere;
-                font-family:monospace;
-                font-size:13px;
-                background-color:white;
-            }
-            
-            .paragraph{
-                text-indent:2em;
-            }
-            
-            .small-footer{
-                border-radius:10px;
-                text-align:center;
-                font-size:14px;
-                background-color:cornflowerblue;
-                margin:5px -5px -5px -5px;
-            }
-            
-            .brk{
-                height:1px;
-                border:2px dotted black;
-                margin:3px 1px 0px 1px;
-                background-color:darkgrey;
-            }
-            
-            .li-4-col{
-                display: block;
-                width: 25%;
-                float: left;
-            }
-            
-        </style>
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body id="body">
         
@@ -127,9 +30,7 @@
         </div>
         
         
-        <!-- Colossus -->
-        
-        <!-- Encoding and Decoding -->
+        <!-- Colossus Encoding and Decoding -->
         <div class="section">
             <h2 class="section-title">Colossus Encoding and Decoding Machine</h2>
             <div class="brk"></div>
@@ -203,6 +104,27 @@
         </div>
         
         
+        <div class="section">
+            <h2 class="section-title">Citizen Hero</h2>
+            <div class="brk"></div>
+            <div class="information">
+                <p class="paragraph">
+                    Tommy Flowers deserves to be in the hall of fame for WWII Citizen Heroes because of his heroics behind the line that doubtlessly saved thousands of lives and impacted the war dramatically.
+                    Tommy Flowers was one of the lead engineers/computer scientists at Bletchley Park along with other famous people like Alan Turing.
+                    Tommy Flowers didn’t fight on the front lines of the war instead, he worked in intelligence and more specifically in code-breaking and decryption.
+                    Bletchley Park North of London was the main base of operations for decrypting German cyphers and messages.
+                    The work carried out at Bletchley park was paramount to the Allied victory.
+                    Th eintelligence gathered from decrypting German messages ranged from supply movements and troop movements to experimental weaponry and invasion plans.
+                    Without the use of the Coloussus created by Tommy Flowers which decrypted Enigma Machine codes.
+                    The use of the machines was complucated and sometimes would still need further decoding by people, but the accomplishments of the early computers was astounding and made previously impossible cyphers came in reach.
+                    The decrypted messages played a key role in predicting German advancements and knowing the weak points in Germanies defences.
+                    The decrypted messages also alerted the Allied troops of incoming attacks saving countless lives.
+                    Without Tommy Flowers and his early computers many people would have died and the outcome of the war could have been different.
+                </p>
+            </div>
+        </div>
+        
+        
         <!-- Sources -->
         <div class="section">
             <h2 class="section-title">Sources</h2>
@@ -215,7 +137,7 @@
                     <li class="li-4-col"><a href="https://en.wikipedia.org/wiki/Enigma_machine">Wikipedia Enigma Machine</a></li>
                     <li class="li-4-col"><a href="http://www.computinghistory.org.uk/det/1078/Tommy-Flowers/">Computing History</a></li>
                     <li class="li-4-col"><a href="https://interestingengineering.com/tommy-flowers-the-man-who-built-colossus">Computing History</a></li>
-                    
+                    <li class="li-4-col"><a href="https://www.bletchleypark.org.uk/">Bletchley Park</a></li>
                 </ul>
                 <br>
                 <div class="small-footer">
@@ -226,84 +148,8 @@
         
         
         
-        
         <!-- Encode and Decode Script -->
-        <script>
-            var $ = id => document.getElementById(id),
-                inp_fld=$("input"),
-                sub_btn=$("submit"),
-                enc_div=$("enc"),
-                dec_div=$("dec"),
-                whl_1=$("wheel-1"),
-                whl_2=$("wheel-2"),
-                whl_3=$("wheel-3"),
-                whlf_1=$("wheelf-1"),
-                whlf_2=$("wheelf-2"),
-                whlf_3=$("wheelf-3"),
-                cipher_string="\nABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890!@#$%^&*()`~-_=+[]{}\\|;:'\",<.>/?",
-                cipher=cipher_string.split(""),
-                wheel1=0,
-                wheel2=0,
-                wheel3=0;
-            
-            whl_1.max=String(cipher.length-1);
-            whl_2.max=String(cipher.length-1);
-            whl_3.max=String(cipher.length-1);
-            
-            function wheel_constrain(n){
-                let SDO=$("wheel-"+n);
-                if(SDO.value<0){SDO.value=0;}
-                if(SDO.value>cipher.length-1){SDO.value=cipher.length-1;}
-            }
-            
-            function update_wheels(){
-                wheel1++;wheel2+=3;
-                if(wheel1>=cipher.length){wheel1=0;wheel2+=3;wheel3+=7;}
-                if(wheel2>=cipher.length){wheel2=0;wheel1+=2;wheel3+=3;}
-                if(wheel3>=cipher.length){wheel3=0;}
-                
-                if(wheel1>=cipher.length||wheel2>=cipher.length||wheel3>=cipher.length){
-                    update_wheels();
-                }
-            }
-            
-            function find_cipher(c){
-                for(var i=0;i<cipher.length;i++){
-                    if(cipher[i]==c){return i;}
-                }
-                return 0;
-            }
-            
-            function encode_text(t){
-                t=t.toUpperCase();
-                let R="";
-                for(let i=0;i<t.length;i++){
-                    update_wheels();
-                    R+=cipher[(wheel1*(wheel2+1)+wheel2+wheel3+find_cipher(t[i]))%cipher.length];
-                }
-                return R;
-            }
-            
-            
-            function randomize_wheels(){
-                whl_1.value=Math.round(Math.random()*cipher.length);
-                whl_2.value=Math.round(Math.random()*cipher.length);
-                whl_3.value=Math.round(Math.random()*cipher.length);
-            }
-            
-            function submit_data(){
-                wheel1=Number(whl_1.value);
-                wheel2=Number(whl_2.value);
-                wheel3=Number(whl_3.value);
-                
-                enc_div.innerText=encode_text(inp_fld.value);
-                dec_div.innerText=(inp_fld.value).toUpperCase();
-                
-                whlf_1.innerText=wheel1;
-                whlf_2.innerText=wheel2;
-                whlf_3.innerText=wheel3;
-            }
-            
-        </script>
+        <script src="script.js"></script>
+        
     </body>
 </html>
